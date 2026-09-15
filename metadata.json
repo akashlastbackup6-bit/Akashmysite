@@ -1,0 +1,6 @@
+{
+  "name": "আকাশ ইসলামিক সেন্টার ও মাইন্ডস্কোপ",
+  "description": "আকাশ ইসলামিক সেন্টার এবং মাইন্ডস্কোপ — ইসলামিক শিক্ষা, মনস্তত্ত্ব ও আত্মোন্নয়নের জন্য মোবাইল-ফার্স্ট বাংলা ব্লগিং প্ল্যাটফর্ম।",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

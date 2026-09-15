@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with role and brand preference",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 200 },
+        "photoURL": { "type": "string", "maxLength": 1000 },
+        "bio": { "type": "string", "maxLength": 1000 },
+        "role": { "type": "string", "enum": ["admin", "user"] },
+        "brandPreference": { "type": "string", "enum": ["islamic", "psychology"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["displayName", "email", "role", "brandPreference"]
+    },
+    "Post": {
+      "title": "Post",
+      "description": "Article or video post under a specific brand",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 300 },
+        "slug": { "type": "string", "maxLength": 300 },
+        "excerpt": { "type": "string", "maxLength": 500 },
+        "coverImage": { "type": "string", "maxLength": 1000 },
+        "type": { "type": "string", "enum": ["article", "video"] },
+        "brand": { "type": "string", "enum": ["islamic", "psychology"] },
+        "body": { "type": "array" },
+        "youtubeUrl": { "type": "string", "maxLength": 500 },
+        "transcript": { "type": "string", "maxLength": 50000 },
+        "studyMaterials": { "type": "array" },
+        "tags": { "type": "array" },
+        "authorId": { "type": "string", "maxLength": 128 },
+        "status": { "type": "string", "enum": ["draft", "published"] },
+        "scheduledFor": { "type": "string" },
+        "likeCount": { "type": "number" },
+        "commentCount": { "type": "number" },
+        "viewCount": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "publishedAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["title", "slug", "type", "brand", "authorId", "status"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "Post comment or 1-level nested reply",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "text": { "type": "string", "maxLength": 2000 },
+        "parentCommentId": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["postId", "userId", "text"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile with role, bio, and brand preference"
+    },
+    "/posts/{postId}": {
+      "schema": "Post",
+      "description": "Published and draft posts belonging to Islamic or Psychology brands"
+    },
+    "/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Comments and replies on posts"
+    }
+  }
+}
